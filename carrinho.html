@@ -66,7 +66,17 @@
 </div>
 
 <script>
-const vendedor = '11989646392';
+// Lista de vendedores
+const vendedores = [
+  "11978511316",
+  "11989005170",
+  "11950460732",
+  "11952177083"
+];
+
+// Escolhe um vendedor aleatório
+const vendedor = vendedores[Math.floor(Math.random() * vendedores.length)];
+
 let rating = 0;
 
 // Carrega carrinho
