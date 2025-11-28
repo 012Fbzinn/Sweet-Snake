@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <style>
+    /* FUNDO MODERNO */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, rgb(17 24 39), #374151, #a73bf5);
+      background-size: 200% 200%;
+      animation: gradientMove 6s infinite alternate ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      height: 100vh;
+      /* 🔥 Fixar altura exata da tela */
+      overflow: hidden;
+      /* 🔥 Bloquear scroll */
+
+      padding-top:;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: left top;
+      }
+
+      100% {
+        background-position: right bottom;
+      }
+    }
+
+    /* LOGO */
+    .logo {
+      width: 300px;
+      margin-bottom: 10px;
+      animation: fadeIn 0.7s ease;
+    }
+
+    /* CONTAINER GLASS */
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      padding: 35px 25px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 22px;
+      margin-top: 20px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.7s ease;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.93);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* TÍTULO LOGIN */
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 15px;
+      color: #fff;
+      margin-left: 4%;
+    }
+
+    /* INPUTS + SELECT */
+    input,
+    select {
+      width: 92% !important;
+      margin-left: 4% !important;
+      padding: 12px !important;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.95);
+      font-size: 15px;
+      box-sizing: border-box !important;
+      appearance: none;
+
+      /* seta customizada */
+      background-image: linear-gradient(45deg, transparent 50%, #555 50%),
+        linear-gradient(135deg, #555 50%, transparent 50%);
+      background-position: calc(100% - 20px) calc(50% - 4px),
+        calc(100% - 15px) calc(50% - 4px);
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    input:focus,
+    select:focus {
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+      transform: scale(1.01);
+    }
+
+    /* BOTÃO */
+    button {
+      width: 92%;
+      margin-left: 4%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: bold;
+
+      background: linear-gradient(135deg, #7700ff, #8b33ff);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(111, 0, 255, 0.4);
+      transition: 0.25s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(76, 0, 255, 0.7);
+      opacity: 0.95;
+    }
+
+    /* ERROS */
+    .error {
+      color: #bb80ff;
+      margin-bottom: 10px;
+      font-size: 14px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <img src="logo.png" class="logo" alt="Logo">
+
+  <div class="container">
+
+    <h2>LOGIN</h2>
+
+    <label>Nome:</label>
+    <input id="nome" type="text">
+
+    <label>WhatsApp:</label>
+    <input id="whatsapp" type="text" maxlength="11">
+
+    <label>Série:</label>
+    <select id="serie">
+      <option value="">Selecione...</option>
+      <option value="1A">1º Ano A</option>
+      <option value="1B">1º Ano B</option>
+      <option value="2A">2º Ano A</option>
+      <option value="2B">2º Ano B</option>
+      <option value="3A">3º Ano A</option>
+      <option value="3B">3º Ano B</option>
+    </select>
+
+    <div id="erro" class="error"></div>
+
+    <button onclick="login()">Entrar</button>
+  </div>
+
+<script>
+function login() {
+  const nome = document.getElementById('nome').value.trim();
+  const whatsapp = document.getElementById('whatsapp').value.trim();
+  const serie = document.getElementById('serie').value;
+  const erro = document.getElementById('erro');
+
+  erro.textContent = "";
+
+  if (!nome) {
+    erro.textContent = "Digite seu nome.";
+    return;
+  }
+
+  if (whatsapp.length !== 11 || isNaN(whatsapp)) {
+    erro.textContent = "WhatsApp inválido. Use 11 números.";
+    return;
+  }
+
+  if (!serie) {
+    erro.textContent = "Selecione sua série.";
+    return;
+  }
+
+  // Verificação de ADM
+if (nome.trim().toUpperCase() === "ADM" && whatsapp === "11996633221") {
+    localStorage.setItem("isAdmin", "true");
+    window.location.href = "adm.html";
+    return;
+} else {
+    localStorage.setItem("isAdmin", "false");
+}
+
+
+  // SALVAR PERFIL LOGADO
+  localStorage.setItem(
+    "user_profile",
+    JSON.stringify({
+      nome,
+      whatsapp,
+      serie,
+      foto: localStorage.getItem("last_photo") || "default.png"
+    })
+  );
+
+  // 🔥 SALVAR NO HISTÓRICO CORRETAMENTE
+  let history = JSON.parse(localStorage.getItem("users_history") || "[]");
+
+  history.push({
+    nome,
+    whatsapp,
+    serie,
+    date: new Date().toLocaleString("pt-BR")
+  });
+
+  localStorage.setItem("users_history", JSON.stringify(history));
+
+  alert("Login realizado com sucesso!");
+  window.location.href = "inicial.html";
+}
+
+</script>
+
+
+</body>
+
+</html>
