@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sweet Snake • Início</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Cores principais */
+            --purple-900: #4c0073;
+            --orange-500: #f97316;
+            --gray-dark: #0f1724;
+            --gray-light: #f2f2f7;
+            --card-bg: #1f2937;
+            --card-hover-shadow: rgba(0, 0, 0, 0.5);
+            --text-white: #ffffff;
+            --text-gray: #d1d5db;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gray-dark);
+        }
+
+        /* Top Bar */
+        .top-bar {
+            color: var(--text-gray);
+        }
+
+        .top-bar a {
+            transition: background 0.3s ease;
+        }
+
+        /* Botão Perfil */
+        #perfilBtn {
+            background: var(--purple-900);
+            color: var(--text-white);
+            transition: background 0.3s ease;
+        }
+
+        #perfilBtn:hover {
+            background: #5e0a91;
+        }
+
+        /* Hero Section */
+        h1, .hero-text {
+            color: var(--text-white);
+        }
+
+        .hero-subtitle {
+            color: var(--text-gray);
+        }
+
+        /* Products Grid */
+        .product-card {
+            background: var(--card-bg);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border-radius: 1.5rem;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--purple-900);
+        }
+
+        .product-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 1rem;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-img:hover {
+            transform: scale(1.05);
+        }
+
+        .add-btn {
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--text-white);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .add-btn:hover {
+            background: var(--orange-500);
+            color: var(--text-white);
+        }
+
+        .info-btn {
+            background: transparent;
+            border: 1px solid #374151; /* cinza escuro */
+            color: var(--text-white);
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .info-btn:hover {
+            background: rgba(247, 115, 22, 0.1);
+        }
+
+
+
+        /* Footer */
+        footer {
+            color: var(--text-gray);
+        }
+
+        footer a {
+            color: var(--orange-500);
+            text-decoration: none;
+        }
+
+        .insta{
+            color: #e5e7eb;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-start justify-center p-6">
+
+    <div class="w-full max-w-6xl bg-gradient-to-b from-gray-800 via-gray-900 to-black rounded-3xl overflow-hidden">
+
+        <!-- Top Bar -->
+        <div class="flex items-center justify-between px-8 py-5 top-bar text-sm">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 bg-purple-900 rounded-lg flex items-center justify-center text-white font-bold">SS</div>
+                <div class="hidden md:block">
+                    <div class="text-white font-semibold">Sweet Snake</div>
+                    <div class="text-xs text-gray-400">Confeitaria Artesanal</div>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-6">
+                <a class="px-3 py-2 bg-purple-900 rounded-md text-white hover:bg-purple-800 transition" href="catalogo.html">Produtos</a>
+                <a class="px-3 py-2 bg-transparent border border-gray-700 rounded-md text-gray-300 hover:bg-gray-800 transition" href="#produto">Sobre</a>
+                <a class="px-3 py-2 bg-transparent border border-gray-700 rounded-md text-gray-300 hover:bg-gray-800 transition" href="Contato.html">Contato</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="perfilBtn" class="px-4 py-2 rounded-xl shadow-lg font-semibold flex items-center gap-2">
+                    <img id="miniFotoPerfil" src="https://i.ibb.co/4P4Qdq1/default.png"
+                        class="w-7 h-7 rounded-full border border-purple-700" alt="foto-perfil">
+                    <a href="perfil.html">Perfil</a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-5 flex flex-col justify-center gap-6">
+                <div class="hero-subtitle">TRADITIONAL ARTISAN BAKERY</div>
+                <h1 class="text-4xl md:text-5xl font-extrabold hero-text">Doces que Hipnotizam</h1>
+                <p class="hero-subtitle max-w-xl">Sweet Snake combina confeitaria artesanal com um toque místico:
+                    receitas feitas à mão, ingredientes selecionados e um visual que encanta.</p>
+
+                <div class="flex items-center gap-4 mt-4">
+                    <a href="catalogo.html" class="px-6 py-3 bg-purple-900 text-white rounded-xl font-semibold hover:bg-purple-800 transition">Ver Cardápio</a>
+                    <a href="carrinho.html" class="px-6 py-3 border border-gray-700 text-gray-300 rounded-xl hover:bg-gray-800 transition">Encomendar</a>
+                </div>
+
+                <div class="mt-6 flex gap-4 text-sm text-gray-400">
+                    <div>Loja: Escola Rosária</div>
+                    <div>•</div>
+                    <div>Retirada no intervalo</div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 flex items-center justify-center">
+                <div class="w-full max-w-md rounded-2xl overflow-hidden bg-gradient-to-tr from-gray-800 to-gray-700 p-6">
+                    <div class="w-full h-64 bg-white/5 rounded-xl flex items-center justify-center">
+                        <div class="w-52 h-52 bg-gradient-to-b from-purple-700 to-purple-500 rounded-full shadow-xl flex items-center justify-center">
+                            <div class="text-white font-bold"><img src="logo.png" alt="imagem" style="width:100%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="lg:col-span-12 mt-2">
+                <div class="text-orange-500 uppercase tracking-wide text-sm font-semibold mb-4" id="produto">Produtos em destaque</div>
+                <div id="products-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="px-8 py-6 border-t border-gray-800 text-gray-400 text-sm flex items-center justify-between">
+            <div>© Sweet Snake • 2025</div>
+            <div><a href="https://www.instagram.com/sweet_snake.oficial" class="insta">Instagram: Sweet Snake</a></div>
+        </footer>
+    </div>
+
+    <script>
+        const grid = document.getElementById('products-grid');
+        const products = [
+            { id: 'tortas', name: 'Snake Premium', price: 'R$35.00', img: 'COMPLETO.png' },
+            { id: 'brigadeiros', name: 'Combo Sweet', price: 'R$20.00', img: 'DOCE.png' },
+            { id: 'cones', name: 'Combo ', price: 'R$15.00', img: 'QUENTE.png' }
+        ];
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const idx = cart.findIndex(item => item.id === product.id);
+            if (idx >= 0) cart[idx].qty += 1;
+            else cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${product.name} adicionado ao carrinho!`);
+        }
+
+        function verProduto(productId) {
+            window.location.href = `produto.html?item=${encodeURIComponent(productId)}`;
+        }
+
+        products.forEach(p => {
+            const card = document.createElement('div');
+            card.className = "product-card p-6 shadow-2xl flex flex-col items-center text-center w-64";
+
+            card.innerHTML = `
+                <div class="mb-4">
+                    <img src="${p.img}" alt="${p.name}" class="product-img" />
+                </div>
+                <div class="text-white font-bold text-xl mb-2">${p.name}</div>
+                <div class="text-gray-300 text-md mb-4">${p.price}</div>
+                <div class="flex gap-3 w-full">
+                    <button class="add-btn flex-1 px-4 py-2 rounded-lg font-semibold">Add</button>
+                    <button class="info-btn px-4 py-2">Info</button>
+                </div>
+            `;
+
+            card.querySelector('.add-btn').addEventListener('click', () => addToCart(p));
+            card.querySelector('.info-btn').addEventListener('click', () => verProduto(p.id));
+
+            grid.appendChild(card);
+        });
+
+        const miniFotoPerfil = document.getElementById("miniFotoPerfil");
+        const savedPhoto = localStorage.getItem("user_photo");
+        if (savedPhoto) miniFotoPerfil.src = savedPhoto;
+    </script>
+</body>
+
+</html>
