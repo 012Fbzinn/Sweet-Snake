@@ -205,7 +205,13 @@ document.getElementById('buyAllBtn').addEventListener('click', () => {
     // Limpar carrinho e redirecionar
     localStorage.removeItem('cart');
     loadCart();
-    window.location.href = `https://wa.me/55${vendedor}?text=${msg}`;
+
+    // Escolhe vendedor somente na hora da compra
+const vendedorEscolhido = vendedores[Math.floor(Math.random() * vendedores.length)];
+
+// Redireciona
+window.location.href = `https://wa.me/55${vendedorEscolhido}?text=${msg}`;
+
   }
 });
 
