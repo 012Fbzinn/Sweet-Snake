@@ -154,14 +154,18 @@
 
     const grid = document.getElementById('products-grid');
 
-    function addToCart(prod) {
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      const idx = cart.findIndex(i => i.id === prod.id);
-      if (idx >= 0) cart[idx].qty += 1;
-      else cart.push({ id: prod.id, name: prod.name, price: prod.price, qty: 1 });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${prod.name} adicionado ao carrinho.`);
-    }
+    function addToCart(id) {
+  const prod = products.find(p => p.id === id);
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+  const idx = cart.findIndex(i => i.id === prod.id);
+  if (idx >= 0) cart[idx].qty += 1;
+  else cart.push({ id: prod.id, name: prod.name, price: prod.price, qty: 1 });
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${prod.name} adicionado ao carrinho.`);
+}
+
 
     function verProduto(nomeId) {
       window.location.href = `produto.html?item=${encodeURIComponent(nomeId)}`;
@@ -178,7 +182,7 @@
           <div class="card-price">${p.price}</div>
         </div>
         <div class="mt-4 w-full flex gap-3">
-          <button class="add-btn" onclick='addToCart(${JSON.stringify(p)})'>Add</button>
+          <button class="add-btn" onclick="addToCart('${p.id}')">Add</button>
           <button class="info-btn" onclick="verProduto('${p.id}')">Info</button>
         </div>
       `;
