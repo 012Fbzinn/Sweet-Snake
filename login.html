@@ -20,18 +20,13 @@
       align-items: center;
 
       height: 100vh;
-      /* 🔥 Fixar altura exata da tela */
       overflow: hidden;
-      /* 🔥 Bloquear scroll */
-
-      padding-top:;
     }
 
     @keyframes gradientMove {
       0% {
         background-position: left top;
       }
-
       100% {
         background-position: right bottom;
       }
@@ -63,7 +58,6 @@
         opacity: 0;
         transform: scale(0.93);
       }
-
       to {
         opacity: 1;
         transform: scale(1);
@@ -75,7 +69,6 @@
         opacity: 0;
         transform: translateY(18px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
@@ -113,16 +106,6 @@
       background: rgba(255, 255, 255, 0.95);
       font-size: 15px;
       box-sizing: border-box !important;
-}
-
-
-      /* seta customizada */
-      background-image: linear-gradient(45deg, transparent 50%, #555 50%),
-        linear-gradient(135deg, #555 50%, transparent 50%);
-      background-position: calc(100% - 20px) calc(50% - 4px),
-        calc(100% - 15px) calc(50% - 4px);
-      background-size: 5px 5px, 5px 5px;
-      background-repeat: no-repeat;
     }
 
     input:focus,
@@ -188,13 +171,17 @@
       <option value="2B">2º Ano B</option>
       <option value="3A">3º Ano A</option>
       <option value="3B">3º Ano B</option>
+
       <option value="9A">9º Ano A</option>
       <option value="9B">9º Ano B</option>
+
       <option value="8A">8º Ano A</option>
       <option value="8B">8º Ano B</option>
+
       <option value="7A">7º Ano A</option>
       <option value="7B">7º Ano B</option>
       <option value="7C">7º Ano C</option>
+
       <option value="6A">6º Ano A</option>
       <option value="6B">6º Ano B</option>
     </select>
@@ -204,69 +191,66 @@
     <button onclick="login()">Entrar</button>
   </div>
 
-<script>
-function login() {
-  const nome = document.getElementById('nome').value.trim();
-  const whatsapp = document.getElementById('whatsapp').value.trim();
-  const serie = document.getElementById('serie').value;
-  const erro = document.getElementById('erro');
+  <script>
+    function login() {
+      const nome = document.getElementById('nome').value.trim();
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      const serie = document.getElementById('serie').value;
+      const erro = document.getElementById('erro');
 
-  erro.textContent = "";
+      erro.textContent = "";
 
-  if (!nome) {
-    erro.textContent = "Digite seu nome.";
-    return;
-  }
+      if (!nome) {
+        erro.textContent = "Digite seu nome.";
+        return;
+      }
 
-  if (whatsapp.length !== 11 || isNaN(whatsapp)) {
-    erro.textContent = "WhatsApp inválido. Use 11 números.";
-    return;
-  }
+      if (whatsapp.length !== 11 || isNaN(whatsapp)) {
+        erro.textContent = "WhatsApp inválido. Use 11 números.";
+        return;
+      }
 
-  if (!serie) {
-    erro.textContent = "Selecione sua série.";
-    return;
-  }
+      if (!serie) {
+        erro.textContent = "Selecione sua série.";
+        return;
+      }
 
-  // Verificação de ADM
-if (nome.trim().toUpperCase() === "ADM" && whatsapp === "11996633221") {
-    localStorage.setItem("isAdmin", "true");
-    window.location.href = "adm.html";
-    return;
-} else {
-    localStorage.setItem("isAdmin", "false");
-}
+      // Verificação de ADM
+      if (nome.trim().toUpperCase() === "ADM" && whatsapp === "11996633221") {
+        localStorage.setItem("isAdmin", "true");
+        window.location.href = "adm.html";
+        return;
+      } else {
+        localStorage.setItem("isAdmin", "false");
+      }
 
+      // Salvar perfil
+      localStorage.setItem(
+        "user_profile",
+        JSON.stringify({
+          nome,
+          whatsapp,
+          serie,
+          foto: localStorage.getItem("last_photo") || "default.png"
+        })
+      );
 
-  // SALVAR PERFIL LOGADO
-  localStorage.setItem(
-    "user_profile",
-    JSON.stringify({
-      nome,
-      whatsapp,
-      serie,
-      foto: localStorage.getItem("last_photo") || "default.png"
-    })
-  );
+      // Histórico
+      let history = JSON.parse(localStorage.getItem("users_history") || "[]");
 
-  // 🔥 SALVAR NO HISTÓRICO CORRETAMENTE
-  let history = JSON.parse(localStorage.getItem("users_history") || "[]");
+      history.push({
+        nome,
+        whatsapp,
+        serie,
+        date: new Date().toLocaleString("pt-BR")
+      });
 
-  history.push({
-    nome,
-    whatsapp,
-    serie,
-    date: new Date().toLocaleString("pt-BR")
-  });
+      localStorage.setItem("users_history", JSON.stringify(history));
 
-  localStorage.setItem("users_history", JSON.stringify(history));
-
-  alert("Login realizado com sucesso!");
-  window.location.href = "inicial.html";
-}
-
-</script>
-
+      alert("Login realizado com sucesso!");
+      window.location.href = "inicial.html";
+    }
+  </script>
 
 </body>
 
